@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useRef} from 'react';
 import {
   StyleSheet,
@@ -9,11 +10,15 @@ import {
 } from 'react-native';
 import Style from '../../styles/Style';
 import FocusableHighlight from '../focusable/FocusableHighlight';
+import {categories} from '../../constants/constants';
+import {navigate} from '../../Navigation';
 
 const COLS = 5;
 const ROWS = 15;
 
-const FlatListDemo = () => {
+const FlatListDemo = ({route}) => {
+  const {className} = route.params;
+  console.log('🚀 ~ CategoryGrid ~ className:', className);
   const flatListRef = useRef();
 
   useEffect(() => {
@@ -55,7 +60,12 @@ const FlatListDemo = () => {
     const key = 'flatlist_item_' + flatListItem.index;
     return (
       <FocusableHighlight
-        onPress={() => {}}
+        onPress={() =>
+          navigate('CategoryList', {
+            item,
+            className,
+          })
+        }
         onFocus={(e) => {
           onItemFocus(e, item);
         }}
@@ -63,7 +73,7 @@ const FlatListDemo = () => {
         style={styles.rowItem}
         nativeID={key}
         key={key}>
-        <Text style={styles.text}>{flatListItem.index}</Text>
+        <Text style={styles.text}>{flatListItem.name}</Text>
       </FocusableHighlight>
     );
   }
@@ -88,9 +98,9 @@ const FlatListDemo = () => {
         ref={flatListRef}
         style={styles.rows}
         nativeID={'flatlist'}
-        data={getData()}
+        data={categories}
         renderItem={renderItem}
-        numColumns={COLS}
+        numColumns={4}
         keyExtractor={(item) => item.index}
         getItemLayout={(data, index) => {
           return {length: rowItemHeight, offset: rowItemHeight * index, index};

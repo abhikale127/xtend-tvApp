@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useContext} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {navigate} from '../Navigation';
@@ -10,7 +11,7 @@ const Menu = () => {
   const [appContext, setAppContext] = useContext(AppContext);
 
   function showMenu() {
-    const items = ['Components', 'Events', 'Focus', 'Scroll', 'Input', 'Video'];
+    const items = ['Scroll', 'Components', 'Events', 'Focus', 'Input', 'Video'];
     return items.map((item) => {
       const key = 'menu_' + item.toLowerCase();
       const route = item.toLowerCase();
@@ -31,8 +32,8 @@ const Menu = () => {
 
   return appContext.menuVisible ? (
     <View style={styles.left}>
-      <Image style={styles.logo} source={reactLogoImageSource} />
-      <Text style={styles.title}>{'React Native TV'}</Text>
+      <Text style={styles.logo}>XTEND</Text>
+
       <View style={styles.menu}>{showMenu()}</View>
     </View>
   ) : null;
@@ -50,11 +51,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: Style.px(150),
+    width: Style.px(250),
     height: Style.px(100),
     margin: Style.px(100),
     marginBottom: Style.px(20),
     resizeMode: 'contain',
+    color: 'white',
+    fontSize: 30,
   },
   title: {
     fontSize: Style.px(30),

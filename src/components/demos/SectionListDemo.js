@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useRef} from 'react';
 import {
   StyleSheet,
@@ -10,8 +11,10 @@ import {
 } from 'react-native';
 import Style from '../../styles/Style';
 import FocusableHighlight from '../focusable/FocusableHighlight';
+import {navigate} from '../../Navigation';
+import {classes} from '../../constants/constants';
 
-const SECTIONS = 15;
+const SECTIONS = 1;
 const SECTIONS_ROWS = 1;
 const ITEMS = 15;
 
@@ -75,11 +78,15 @@ const SectionListDemo = () => {
 
   function showItems(section, row) {
     const items = Array.from(Array(ITEMS).keys());
-    return items.map((item) => {
+    return classes.map((item) => {
       const key = 'sectionlist_item_' + section + '.' + row + '.' + item;
       return (
         <FocusableHighlight
-          onPress={() => {}}
+          onPress={() =>
+            navigate('CategoryGrid', {
+              className: item,
+            })
+          }
           onFocus={(e) => {
             onItemFocus(e, section, row, item);
           }}
@@ -87,7 +94,7 @@ const SectionListDemo = () => {
           style={styles.rowItem}
           nativeID={key}
           key={key}>
-          <Text style={styles.text}>{section + '.' + item}</Text>
+          <Text style={styles.text}>{item.class}</Text>
         </FocusableHighlight>
       );
     });
@@ -95,7 +102,7 @@ const SectionListDemo = () => {
 
   function showRow(sectionItem) {
     const item = sectionItem.item;
-    const key = 'sectionlist_row_' + item.section + '.' + item.row;
+    const key = 'sectionlist_row_' + item.section + '.' + item.class;
     return (
       <ScrollView
         ref={(ref) => {
@@ -132,7 +139,7 @@ const SectionListDemo = () => {
         rows.push({section: i, row: j});
       }
       sections.push({
-        title: 'Section ' + i,
+        title: 'class List',
         data: rows,
       });
     }

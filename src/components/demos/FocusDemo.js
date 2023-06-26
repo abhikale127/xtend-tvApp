@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useRef} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Style from '../../styles/Style';
@@ -26,6 +27,7 @@ const FocusDemo = () => {
             ref={topLeftRef}
             nativeID={'top_left_button'}
             nextFocusDown={bottomLeftHandle}
+            nextFocusUp={bottomLeftHandle}
             onPress={() => {}}
             style={styles.button}
             underlayColor={Style.buttonFocusedColor}>
@@ -163,6 +165,7 @@ const styles = StyleSheet.create({
   buttonFocused: {
     borderWidth: Style.px(10),
     borderColor: '#eb4034',
+    width: '30%',
   },
   buttonPressed: {
     borderWidth: Style.px(10),

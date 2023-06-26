@@ -13,13 +13,15 @@ const TAB_SECTIONLIST = 'ClassList';
 
 const tabs = [
   {
-    type: TAB_SECTIONLIST,
+    type: TAB_FLATLIST,
     text: 'ClassList',
   },
 ];
 
-const ScrollDemo = () => {
-  const [selectedTab, setSelectedTab] = useState(TAB_SECTIONLIST);
+const CategoryList = ({route}) => {
+  const {className} = route.params;
+  console.log('🚀 ~ CategoryGrid ~ className:', className.class);
+  const [selectedTab, setSelectedTab] = useState(TAB_FLATLIST);
 
   function isSelected(tab) {
     return selectedTab === tab;
@@ -49,13 +51,13 @@ const ScrollDemo = () => {
         </Text>
         <View style={styles.tabs}>{showTabs()}</View>
       </View>
-
-      {isSelected(TAB_SECTIONLIST) && <SectionListDemo />}
+      {isSelected(TAB_FLATLIST) && <FlatListDemo />}
+      {/* {isSelected(TAB_SECTIONLIST) && <SectionListDemo />} */}
     </View>
   );
 };
 
-export default ScrollDemo;
+export default CategoryList;
 
 const styles = StyleSheet.create({
   tabs: {

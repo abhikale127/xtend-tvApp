@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -10,6 +11,7 @@ import FocusDemo from './demos/FocusDemo';
 import ScrollDemo from './demos/ScrollDemo';
 import InputDemo from './demos/InputDemo';
 import VideoDemo from './demos/VideoDemo';
+import CategoryGrid from './demos/CategoryGrid';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +35,8 @@ const Content = () => {
           detachPreviousScreen: true,
         }}>
         <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="CategoryGrid" component={CategoryGrid} />
+        <Stack.Screen name="CategoryList" component={CategoryGrid} />
         <Stack.Screen name="components" component={ComponentsDemo} />
         <Stack.Screen name="events" component={EventsDemo} />
         <Stack.Screen name="focus" component={FocusDemo} />
